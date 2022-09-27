@@ -13,4 +13,4 @@ Haverá uma área de gerenciamento de produtos e estoque, em que o funcionário 
 Existirá um módulo de emissão de nota fiscal para pedidos em que o pagamento já foi confirmado. O cancelamento de um pedido poderá ser realizado mediante falta de estoque de um dos itens do mesmo, ou por meio da requisição do cliente e apenas no caso do pedido ainda não ter sido enviado. Em caso de cancelamento de um pedido com pagamento já confirmado, haverá reembolso automático.
 O funcionário terá acesso a uma opção que permitirá bloquear clientes. Haverá um segmento de status do pedido a ser atualizado automaticamente pelo sistema ou manualmente pelo funcionário, de acordo com a situação do mesmo. Os status serão: “Aguardando Pagamento”, “Pagamento Confirmado”, “Em Separação”,  “Entrega em andamento”,  “Entregue”,  “Cancelado”.
 
-#### Integrantes: Bruno Decnop, Hugo Bianquini, Julia Ribas, Rafaela Peçanha, Rafael Martins, Tais Bruno, Tiago Matos, Thomaz Falcão
+### Integrantes: Bruno Decnop, Hugo Bianquini, Julia Ribas, Rafaela Peçanha, Rafael Martins, Tais Bruno, Tiago Matos, Thomaz Falcão
