@@ -1,5 +1,5 @@
-#Tema
-###Sistema de Comércio eletrônico farmacêutico com Gestão de Estoque
+# Tema
+### Sistema de Comércio eletrônico farmacêutico com Gestão de Estoque
 
 # Escopo do Sistema
 O sistema a ser desenvolvido será uma loja virtual, acessada por meio de um link da web. A loja possuirá um sistema de gerenciamento de venda e estoque voltado para produtos farmacêuticos, que automatiza o controle do estoque a partir da inserção, separação, localização e alteração dos produtos. O sistema apresentará módulos para cadastro, login, edição, exclusão de conta, detalhamento, gerenciamento de pedidos, acesso a nota fiscal, acesso a histórico dos pedidos por parte do próprio usuário. Usuários poderão buscar produtos, efetuar uma compra, gerenciar pedidos, gerenciar opções de pagamento, além de requisitar alerta de disponibilidade para produtos fora de estoque. Também haverá módulos para cadastro, alteração, consulta, remoção de funcionários da plataforma. O cadastro do cliente e do funcionário exigirão um conjunto de dados como: nome completo, celular, CPF, senha de acesso ao sistema, endereço e email. 
@@ -13,4 +13,4 @@ Haverá uma área de gerenciamento de produtos e estoque, em que o funcionário 
 Existirá um módulo de emissão de nota fiscal para pedidos em que o pagamento já foi confirmado. O cancelamento de um pedido poderá ser realizado mediante falta de estoque de um dos itens do mesmo, ou por meio da requisição do cliente e apenas no caso do pedido ainda não ter sido enviado. Em caso de cancelamento de um pedido com pagamento já confirmado, haverá reembolso automático.
 O funcionário terá acesso a uma opção que permitirá bloquear clientes. Haverá um segmento de status do pedido a ser atualizado automaticamente pelo sistema ou manualmente pelo funcionário, de acordo com a situação do mesmo. Os status serão: “Aguardando Pagamento”, “Pagamento Confirmado”, “Em Separação”,  “Entrega em andamento”,  “Entregue”,  “Cancelado”.
 
-####Integrantes: Bruno Decnop, Hugo Bianquini, Julia Ribas, Rafaela Peçanha, Rafael Martins, Tais Bruno, Tiago Matos, Thomaz Falcão
+#### Integrantes: Bruno Decnop, Hugo Bianquini, Julia Ribas, Rafaela Peçanha, Rafael Martins, Tais Bruno, Tiago Matos, Thomaz Falcão
