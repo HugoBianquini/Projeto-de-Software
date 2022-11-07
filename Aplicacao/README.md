@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introdução
+> Sistema instalado no wsl utilizando o RVM, ruby versão 3.0 e rails 7.0
 
-Things you may want to cover:
+> Utilização do Banco de Dados MySQL
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Criação da aplicação com o seguinte comando:
+```
+rails _7.0_ new . --css=bootstrap -d=mysql -T
+```
+## Criação dos usuários
+* Usuário, funcionário, cliente e administrador
+* 
