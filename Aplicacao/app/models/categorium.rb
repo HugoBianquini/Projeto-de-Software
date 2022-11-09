@@ -1,2 +1,0 @@
-class Categorium < ApplicationRecord
-end
