@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_034600) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_122952) do
+  create_table "categoria", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "produtos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "nome"
+    t.string "descricao"
+    t.string "fabricante"
+    t.boolean "exige_prescricao"
+    t.string "img_url"
+    t.bigint "categoria_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categoria_id"], name: "index_produtos_on_categoria_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "mail"
@@ -23,4 +41,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_034600) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "produtos", "categoria", column: "categoria_id"
 end

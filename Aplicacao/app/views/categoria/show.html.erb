@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @categorium %>
+
+<div>
+  <%= link_to "Edit this categorium", edit_categorium_path(@categorium) %> |
+  <%= link_to "Back to categoria", categoria_path %>
+
+  <%= button_to "Destroy this categorium", @categorium, method: :delete %>
+</div>
