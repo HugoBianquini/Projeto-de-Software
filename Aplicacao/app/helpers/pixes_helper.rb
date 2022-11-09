@@ -1,0 +1,2 @@
+module PixesHelper
+end
