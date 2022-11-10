@@ -10,8 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
-  create_table "addresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_173634) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
     t.string "type"
     t.string "name"
     t.string "street"
@@ -25,70 +28,76 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cart_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "cart_id", null: false
+  create_table "addresses_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_cart_products_on_cart_id"
-    t.index ["product_id"], name: "index_cart_products_on_product_id"
+    t.index ["address_id"], name: "index_addresses_users_on_address_id"
+    t.index ["user_id"], name: "index_addresses_users_on_user_id"
   end
 
-  create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "carts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "carts_products", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_carts_products_on_cart_id"
+    t.index ["product_id"], name: "index_carts_products_on_product_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "client_addresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "address_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_client_addresses_on_address_id"
-    t.index ["user_id"], name: "index_client_addresses_on_user_id"
-  end
-
-  create_table "credit_cards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "credit_cards", force: :cascade do |t|
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "debit_cards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "debit_cards", force: :cascade do |t|
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "invoices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "invoices", force: :cascade do |t|
     t.bigint "supplier_id", null: false
+    t.bigint "order_id"
     t.string "hash"
     t.date "emission"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_invoices_on_order_id"
     t.index ["supplier_id"], name: "index_invoices_on_supplier_id"
   end
 
-  create_table "order_picks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "order_picks", force: :cascade do |t|
     t.bigint "position_id", null: false
     t.integer "quantity"
     t.bigint "user_id", null: false
+    t.bigint "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_picks_on_order_id"
     t.index ["position_id"], name: "index_order_picks_on_position_id"
     t.index ["user_id"], name: "index_order_picks_on_user_id"
   end
 
-  create_table "order_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "order_products", force: :cascade do |t|
+    t.integer "quantity"
     t.bigint "order_id", null: false
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
@@ -97,7 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
-  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.string "status"
     t.string "cancel_motivation"
     t.string "track_code"
@@ -107,7 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "payments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "payments", force: :cascade do |t|
     t.string "type"
     t.string "value"
     t.bigint "order_id", null: false
@@ -116,13 +125,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
-  create_table "pixes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "pixes", force: :cascade do |t|
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "positions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "positions", force: :cascade do |t|
     t.string "type"
     t.string "code"
     t.bigint "stock_product_id", null: false
@@ -134,7 +143,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["stock_product_id"], name: "index_positions_on_stock_product_id"
   end
 
-  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "manufacturer"
@@ -147,7 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-  create_table "stock_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "stock_products", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.string "batch"
     t.date "fabrication"
@@ -160,14 +169,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["product_id"], name: "index_stock_products_on_product_id"
   end
 
-  create_table "stocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "stocks", force: :cascade do |t|
     t.bigint "store_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_stocks_on_store_id"
   end
 
-  create_table "stores", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "stores", force: :cascade do |t|
     t.string "name"
     t.string "cnpj"
     t.bigint "address_id", null: false
@@ -176,7 +185,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["address_id"], name: "index_stores_on_address_id"
   end
 
-  create_table "suppliers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.string "cnpj"
     t.bigint "address_id", null: false
@@ -185,13 +194,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["address_id"], name: "index_suppliers_on_address_id"
   end
 
-  create_table "tickets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tickets", force: :cascade do |t|
     t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "mail"
     t.string "phonenumber"
@@ -205,12 +214,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_141636) do
     t.index ["store_id"], name: "index_users_on_store_id"
   end
 
-  add_foreign_key "cart_products", "carts"
-  add_foreign_key "cart_products", "products"
+  add_foreign_key "addresses_users", "addresses"
+  add_foreign_key "addresses_users", "users"
   add_foreign_key "carts", "users"
-  add_foreign_key "client_addresses", "addresses"
-  add_foreign_key "client_addresses", "users"
+  add_foreign_key "carts_products", "carts"
+  add_foreign_key "carts_products", "products"
+  add_foreign_key "invoices", "orders"
   add_foreign_key "invoices", "suppliers"
+  add_foreign_key "order_picks", "orders"
   add_foreign_key "order_picks", "positions"
   add_foreign_key "order_picks", "users"
   add_foreign_key "order_products", "orders"

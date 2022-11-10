@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Addresses users</h1>
+
+<div id="addresses_users">
+  <% @addresses_users.each do |addresses_user| %>
+    <%= render addresses_user %>
+    <p>
+      <%= link_to "Show this addresses user", addresses_user %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New addresses user", new_addresses_user_path %>

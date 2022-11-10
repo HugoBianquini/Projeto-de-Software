@@ -1,4 +1,4 @@
-class ClientAddress < ApplicationRecord
+class AddressesUser < ApplicationRecord
   belongs_to :user
   belongs_to :address
 end
