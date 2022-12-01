@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pixes</h1>
+
+<div id="pixes">
+  <% @pixes.each do |pix| %>
+    <%= render pix %>
+    <p>
+      <%= link_to "Show this pix", pix %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New pix", new_pix_path %>

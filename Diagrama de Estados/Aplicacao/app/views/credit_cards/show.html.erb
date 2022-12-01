@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @credit_card %>
+
+<div>
+  <%= link_to "Edit this credit card", edit_credit_card_path(@credit_card) %> |
+  <%= link_to "Back to credit cards", credit_cards_path %>
+
+  <%= button_to "Destroy this credit card", @credit_card, method: :delete %>
+</div>

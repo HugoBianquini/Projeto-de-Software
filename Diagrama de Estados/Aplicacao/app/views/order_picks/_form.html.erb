@@ -1,0 +1,32 @@
+<%= form_with(model: order_pick) do |form| %>
+  <% if order_pick.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(order_pick.errors.count, "error") %> prohibited this order_pick from being saved:</h2>
+
+      <ul>
+        <% order_pick.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :position_id, style: "display: block" %>
+    <%= form.text_field :position_id %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

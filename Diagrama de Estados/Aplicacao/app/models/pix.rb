@@ -1,0 +1,2 @@
+class Pix < Payment
+end

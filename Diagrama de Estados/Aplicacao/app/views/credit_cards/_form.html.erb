@@ -1,0 +1,22 @@
+<%= form_with(model: credit_card) do |form| %>
+  <% if credit_card.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(credit_card.errors.count, "error") %> prohibited this credit_card from being saved:</h2>
+
+      <ul>
+        <% credit_card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :key, style: "display: block" %>
+    <%= form.text_field :key %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
